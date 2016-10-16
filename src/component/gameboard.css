@@ -1,0 +1,36 @@
+table {
+    height: 800px;
+    width: 400px;
+}
+
+table, td, th {
+    border : 1px #808080 solid;
+}
+
+.shape-i {
+    background: #6DFECD;
+}
+
+.shape-z {
+    background: #FC3768;
+}
+
+.shape-o {
+    background: #00F;
+}
+
+.shape-t {
+    background: #CB6CFC;
+}
+
+.shape-j {
+    background: #136BFB;
+}
+
+.shape-l {
+    background: #FD9827;
+}
+
+.shape-s {
+    background: #6DFD46;
+}
