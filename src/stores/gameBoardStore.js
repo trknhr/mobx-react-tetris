@@ -7,6 +7,7 @@ import {getRandomShape} from '../utils/TypesUtil'
 export default class GameBoardStore {
 
     @observable piece
+    @observable isOver = false
 
     _interval
 
@@ -81,19 +82,27 @@ export default class GameBoardStore {
         }
     }
 
+    playerLost = () => {
+        clearInterval(this._interval)
+        console.log('over!!')
+        this.isOver = true
+    }
+
     setUpNewPiece = () => {
         const shape = getRandomShape()
         const position = {
                 x: (BOARD_WIDTH / 2) - shape.blocks.length / 2,
                 y: 0
             }
-        this.piece = {
+        const newPiece = {
             shape,
             rotation: 0,
             position
         }
-        if(!this.boardStore.isEmptyPosition(this.piece.shape, this.piece.rotation, position)) {
-            console.log('end')
+        if(!this.boardStore.isEmptyPosition(newPiece.shape, newPiece.rotation, position)) {
+            this.playerLost()
+        } else {
+            this.piece = newPiece
         }
     }
 

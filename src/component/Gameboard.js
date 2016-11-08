@@ -2,6 +2,7 @@ import React from 'react';
 import {observer} from 'mobx-react';
 import './gameboard.css'
 import key from 'keymaster'
+import Modal from './Modal'
 
 @observer
 export default class Gameboard extends React.Component {
@@ -11,9 +12,10 @@ export default class Gameboard extends React.Component {
         gameBoardStore.start()
     }
     render() {
-        const {gameBoardStore, viewStore} = this.props;
+        const {gameBoardStore} = this.props;
 
         const gameBoard = gameBoardStore.board
+        console.log('gameBoardStore.isOver', gameBoardStore.isOver)
         const rows = gameBoard.map((row, i) => {
             const blocksInRows = row.map((block, j) => {
                 const classString = 'game-block ' + (block || 'block-empty')
@@ -29,6 +31,7 @@ export default class Gameboard extends React.Component {
         })
         return (
             <div className="game">
+                <Modal isOver={gameBoardStore.isOver}/>
                 <table className="game-board">
                     <tbody>
                         {rows}
