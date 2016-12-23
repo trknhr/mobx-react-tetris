@@ -1,6 +1,6 @@
 import {observable, computed, reaction, action} from 'mobx';
-import {BOARD_HEIGHT, BOARD_WIDTH, FRAME_TIME} from '../constants/'
-import {I, J, L, O, S, T, Z} from '../types/shapeTypes'
+import {BOARD_WIDTH, FRAME_TIME} from '../constants/'
+import {Z} from '../types/shapeTypes'
 import {pieceSetter} from './boardStore'
 import {getRandomShape} from '../utils/TypesUtil'
 
@@ -70,7 +70,6 @@ export default class GameBoardStore {
 
     lockIn = () => {
         this.boardStore.setPiece(this.piece.shape, this.piece.rotation, this.piece.position)
-        // todo how to create new piece
         this.setUpNewPiece()
     }
 
@@ -84,7 +83,6 @@ export default class GameBoardStore {
 
     playerLost = () => {
         clearInterval(this._interval)
-        console.log('over!!')
         this.isOver = true
     }
 
